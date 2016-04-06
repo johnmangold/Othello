@@ -6,8 +6,6 @@
 |#
 
 ;---------------Global variables----------------------
-(defvar *BOARD*)
-(defvar *PLAYER*)
 
 ;----------load needed files here---------------------
 (load 'othello-init)
@@ -25,16 +23,15 @@
 		(return)
 	)
 	
-	(setf *PLAYER* (string-downcase player))
-	
-	(when (not (or (string= *PLAYER* "white") (string= *PLAYER* "black")))
-	(format t "Usage: clisp othello.lsp [Black or White]~%")
-	(format t "You must specify whether you wish to be either White or Black.~%")
-	(return)
-)
-	
-	(setf *BOARD* (othello-init))
-	(print-board)
+	(when (not (or (string= player "white") (string= player "black")))
+		(format t "Usage: clisp othello.lsp [Black or White]~%")
+		(format t "You must specify whether you wish to be either White or Black.~%")
+		(return)
+	)
+		
+	(let ((board (othello-init)))
+		(print-board board)
+	)
 )
 
 (when (equal (length *ARGS*) 0)
@@ -42,11 +39,12 @@
 	(return)
 )
 
-(setf *PLAYER* (string-downcase (first *ARGS*)))
-(when (not (or (string= *PLAYER* "white") (string= *PLAYER* "black")))
-	(format t "Usage: clisp othello.lsp [Black or White]~%")
-	(format t "You must specify whether you wish to be either White or Black.~%")
-	(return)
-)
+(let ((player (string-downcase (first *ARGS*))))
+	(when (not (or (string= player "white") (string= player "black")))
+		(format t "Usage: clisp othello.lsp [Black or White]~%")
+		(format t "You must specify whether you wish to be either White or Black.~%")
+		(return)
+	)
 
-(othello *PLAYER*)
+	(othello player)
+)
