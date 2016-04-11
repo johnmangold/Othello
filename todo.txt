@@ -19,7 +19,7 @@ standard evaluation function
 	that can be captured.
 move-generator
 	generates successor from given position.  only one ply deep.
-deepenough
+deepenough (this is finished)
 	predicate.  returns t if given depth is deepenough. nil if not deep enough.
 	depth is given and decremented when it is passed into the recursive minimax call.
 	so, when depth == 0 return t.

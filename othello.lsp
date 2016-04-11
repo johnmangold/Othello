@@ -6,11 +6,13 @@
 |#
 
 ;---------------Global variables----------------------
+(defvar *player*)
+(defvar *computer*)
 
 ;----------load needed files here---------------------
 (load 'othello-init)
 (load 'print-board)
-
+(load 'valid-move)
 
 
 
@@ -28,9 +30,21 @@
 		(format t "You must specify whether you wish to be either White or Black.~%")
 		(return)
 	)
+	
+	(cond 
+		((string= player "white")
+			(setf *player* 1)
+			(setf *computer* -1)
+		)
+		
+		((string= player "black")
+			(setf *player* -1)
+			(setf *computer* 1)
+		)
+	)
 		
 	(let ((board (othello-init)))
-		(print-board board)
+		(valid-move board '(5 5) "white")
 	)
 )
 
