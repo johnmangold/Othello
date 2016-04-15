@@ -13,100 +13,100 @@
 		)
 	)
 	
-	(dotimes (i (length board))
-		(when (equal i 0)
+	(dotimes (i (- (length board) 10))
+		(when (equal i 10)
 			(format t "1 ")
 		)
 		
-		(when (< i 7)
+		(when (and (> i 10) (< i 18))
 			(format t "~a " (nth i board))
 		)
 		
-		(when (equal i 7)
+		(when (and (> i 10) (equal i 18))
 			(format t "~a~%" (nth i board))
 		)
 		
-		(when (and (> i 7) (equal i 8))
+		(when (and (> i 20) (equal i 21))
 			(format t "2 ")
 		)
 		
-		(when (and (> i 7) (< i 15))
+		(when (and (> i 20) (< i 28))
 			(format t "~a " (nth i board))
 		)
 		
-		(when (and (> i 7) (equal i 15))
+		(when (and (> i 20) (equal i 28))
 			(format t "~a~%" (nth i board))
 		)
 		
-		(when (and (> i 15) (equal i 16))
+		(when (and (> i 30) (equal i 31))
 			(format t "3 ")
 		)
 		
-		(when (and (> i 15) (< i 23))
+		(when (and (> i 30) (< i 38))
 			(format t "~a " (nth i board))
 		)
 		
-		(when (and (> i 15) (equal i 23))
+		(when (and (> i 30) (equal i 38))
 			(format t "~a~%" (nth i board))
 		)
 		
-		(when (and (> i 23) (equal i 24))
+		(when (and (> i 40) (equal i 41))
 			(format t "4 ")
 		)
 		
-		(when (and (> i 23) (< i 31))
+		(when (and (> i 40) (< i 48))
 			(format t "~a " (nth i board))
 		)
 		
-		(when (and (> i 23) (equal i 31))
+		(when (and (> i 40) (equal i 48))
 			(format t "~a~%" (nth i board))
 		)
 		
-		(when (and (> i 31) (equal i 32))
+		(when (and (> i 50) (equal i 51))
 			(format t "5 ")
 		)
 		
-		(when (and (> i 31) (< i 39))
+		(when (and (> i 50) (< i 58))
 			(format t "~a " (nth i board))
 		)
 		
-		(when (and (> i 31) (equal i 39))
+		(when (and (> i 50) (equal i 58))
 			(format t "~a~%" (nth i board))
 		)
 		
-		(when (and (> i 39) (equal i 40))
+		(when (and (> i 60) (equal i 61))
 			(format t "6 ")
 		)
 		
-		(when (and (> i 39) (< i 47))
+		(when (and (> i 60) (< i 68))
 			(format t "~a " (nth i board))
 		)
 		
-		(when (and (> i 39) (equal i 47))
+		(when (and (> i 60) (equal i 68))
 			(format t "~a~%" (nth i board))
 		)
 		
-		(when (and (> i 47) (equal i 48))
+		(when (and (> i 70) (equal i 71))
 			(format t "7 ")
 		)
 		
-		(when (and (> i 47) (< i 55))
+		(when (and (> i 70) (< i 78))
 			(format t "~a " (nth i board))
 		)
 		
-		(when (and (> i 47) (equal i 55))
+		(when (and (> i 70) (equal i 78))
 			(format t "~a~%" (nth i board))
 		)
 		
-		(when (and (> i 55) (equal i 56))
+		(when (and (> i 80) (equal i 81))
 			(format t "8 ")
 		)
 		
-		(when (and (> i 55) (< i 63))
+		(when (and (> i 80) (< i 88))
 			(format t "~a " (nth i board))
 		)
 		
-		(when (and (> i 55) (equal i 63))
+		(when (and (> i 80) (equal i 88))
 			(format t "~a~%" (nth i board))
 		)
 	)
