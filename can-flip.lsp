@@ -1,7 +1,4 @@
 (defun can-flip (board position color direction depth)
-	;need a check to make sure it doesn't go off the board.
-	;not sure this recursion works.  might run forever.
-	;also need to add depth check so you can't place next to your own piece.
 	(cond
 		((string= color "white")
 			(setf color "W")
@@ -16,7 +13,7 @@
 	(cond
 		((string= direction "N")
 			(cond
-				((or (string= (nth position board) "-") (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
 				((string= (nth position board) color) t)
 				(t (can-flip board (- position 10) color direction (1+ depth)))
 			)
@@ -24,61 +21,58 @@
 		
 		((string= direction "NW")
 			(cond
-				((or (string= (nth position board) "-") (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
 				((string= (nth position board) color) t)
-				(t (can-flip board (- position 11) color direction))
+				(t (can-flip board (- position 11) color direction (1+ depth)))
 			)
 		)
 		
 		((string= direction "W")
 			(cond
-				((or (string= (nth position board) "-") (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
 				((string= (nth position board) color) t)
-				(t (can-flip board (1- position) color direction))
+				(t (can-flip board (1- position) color direction (1+ depth)))
 			)
 		)
 		
 		((string= direction "SW")
 			(cond
-				((or (string= (nth position board) "-") (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
 				((string= (nth position board) color) t)
-				(t (can-flip board (+ position 9) color direction))
+				(t (can-flip board (+ position 9) color direction (1+ depth)))
 			)
 		)
 		
 		((string= direction "S")
 			(cond
-				((or (string= (nth position board) "-") (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
 				((string= (nth position board) color) t)
-				(t (can-flip board (+ position 10) color direction))
+				(t (can-flip board (+ position 10) color direction (1+ depth)))
 			)
 		)
 		
 		((string= direction "SE")
 			(cond
-				((or (string= (nth position board) "-") (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
 				((string= (nth position board) color) t)
-				(t (can-flip board (+ position 11) color direction))
+				(t (can-flip board (+ position 11) color direction (1+ depth)))
 			)
 		)
 		
 		((string= direction "E")
 			(cond
-				((or (string= (nth position board) "-") (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
 				((string= (nth position board) color) t)
-				(t (can-flip board (1+ position) color direction))
+				(t (can-flip board (1+ position) color direction (1+ depth)))
 			)
 		)
 		
 		((string= direction "NE")
 			(cond
-				((or (string= (nth position board) "-") (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
 				((string= (nth position board) color) t)
-				(t (can-flip board (- position 9) color direction))
+				(t (can-flip board (- position 9) color direction (1+ depth)))
 			)
 		)
 	)
-	
-	;not sure it's necessary since the checks we have are:
-	;blank space, same color, off board, or default to check further
 )
