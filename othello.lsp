@@ -13,6 +13,7 @@
 (load 'othello-init)
 (load 'print-board)
 (load 'valid-move)
+(load 'minimax)
 
 
 
