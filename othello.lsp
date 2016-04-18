@@ -17,8 +17,6 @@
 
 ;---------------Global variables----------------------
 (defvar *board* (othello-init))
-(defvar *player*)
-(defvar *computer*)
 
 ;------------------functions--------------------------
 
