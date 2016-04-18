@@ -1,4 +1,4 @@
-(defun can-flip (position color direction depth)
+(defun flip-pieces (position color direction depth)
 	(cond
 		((string= color "white")
 			(setf color "W")
@@ -15,7 +15,10 @@
 			(cond
 				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
 				((string= (nth position *board*) color) t)
-				(t (can-flip (- position 10) color direction (1+ depth)))
+				(t 
+					(setf (nth position *board*) color)
+					(flip-pieces (- position 10) color direction (1+ depth))
+				)
 			)
 		)
 		
@@ -23,7 +26,10 @@
 			(cond
 				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
 				((string= (nth position *board*) color) t)
-				(t (can-flip (- position 11) color direction (1+ depth)))
+				(t 
+					(setf (nth position *board*) color)
+					(flip-pieces (- position 11) color direction (1+ depth))
+				)
 			)
 		)
 		
@@ -31,7 +37,10 @@
 			(cond
 				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
 				((string= (nth position *board*) color) t)
-				(t (can-flip (1- position) color direction (1+ depth)))
+				(t 
+					(setf (nth position *board*) color)
+					(flip-pieces (1- position) color direction (1+ depth))
+				)
 			)
 		)
 		
@@ -39,7 +48,10 @@
 			(cond
 				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
 				((string= (nth position *board*) color) t)
-				(t (can-flip (+ position 9) color direction (1+ depth)))
+				(t 
+					(setf (nth position *board*) color)
+					(flip-pieces (+ position 9) color direction (1+ depth))
+				)
 			)
 		)
 		
@@ -47,7 +59,10 @@
 			(cond
 				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
 				((string= (nth position *board*) color) t)
-				(t (can-flip (+ position 10) color direction (1+ depth)))
+				(t 
+					(setf (nth position *board*) color)
+					(flip-pieces (+ position 10) color direction (1+ depth))
+				)
 			)
 		)
 		
@@ -55,7 +70,10 @@
 			(cond
 				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
 				((string= (nth position *board*) color) t)
-				(t (can-flip (+ position 11) color direction (1+ depth)))
+				(t 
+					(setf (nth position *board*) color)
+					(flip-pieces (+ position 11) color direction (1+ depth))
+				)
 			)
 		)
 		
@@ -63,7 +81,10 @@
 			(cond
 				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
 				((string= (nth position *board*) color) t)
-				(t (can-flip (1+ position) color direction (1+ depth)))
+				(t 
+					(setf (nth position *board*) color)
+					(flip-pieces (1+ position) color direction (1+ depth))
+				)
 			)
 		)
 		
@@ -71,7 +92,10 @@
 			(cond
 				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
 				((string= (nth position *board*) color) t)
-				(t (can-flip (- position 9) color direction (1+ depth)))
+				(t 
+					(setf (nth position *board*) color)
+					(flip-pieces (- position 9) color direction (1+ depth))
+				)
 			)
 		)
 	)

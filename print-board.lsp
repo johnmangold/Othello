@@ -1,4 +1,4 @@
-(defun print-board (board)
+(defun print-board ()
 	(dotimes (i 8)
 		(when (equal i 0)
 			(format t "  ")
@@ -13,17 +13,17 @@
 		)
 	)
 	
-	(dotimes (i (- (length board) 10))
+	(dotimes (i (- (length *board*) 10))
 		(when (equal i 10)
 			(format t "1 ")
 		)
 		
 		(when (and (> i 10) (< i 18))
-			(format t "~a " (nth i board))
+			(format t "~a " (nth i *board*))
 		)
 		
 		(when (and (> i 10) (equal i 18))
-			(format t "~a~%" (nth i board))
+			(format t "~a~%" (nth i *board*))
 		)
 		
 		(when (and (> i 20) (equal i 21))
@@ -31,11 +31,11 @@
 		)
 		
 		(when (and (> i 20) (< i 28))
-			(format t "~a " (nth i board))
+			(format t "~a " (nth i *board*))
 		)
 		
 		(when (and (> i 20) (equal i 28))
-			(format t "~a~%" (nth i board))
+			(format t "~a~%" (nth i *board*))
 		)
 		
 		(when (and (> i 30) (equal i 31))
@@ -43,11 +43,11 @@
 		)
 		
 		(when (and (> i 30) (< i 38))
-			(format t "~a " (nth i board))
+			(format t "~a " (nth i *board*))
 		)
 		
 		(when (and (> i 30) (equal i 38))
-			(format t "~a~%" (nth i board))
+			(format t "~a~%" (nth i *board*))
 		)
 		
 		(when (and (> i 40) (equal i 41))
@@ -55,11 +55,11 @@
 		)
 		
 		(when (and (> i 40) (< i 48))
-			(format t "~a " (nth i board))
+			(format t "~a " (nth i *board*))
 		)
 		
 		(when (and (> i 40) (equal i 48))
-			(format t "~a~%" (nth i board))
+			(format t "~a~%" (nth i *board*))
 		)
 		
 		(when (and (> i 50) (equal i 51))
@@ -67,11 +67,11 @@
 		)
 		
 		(when (and (> i 50) (< i 58))
-			(format t "~a " (nth i board))
+			(format t "~a " (nth i *board*))
 		)
 		
 		(when (and (> i 50) (equal i 58))
-			(format t "~a~%" (nth i board))
+			(format t "~a~%" (nth i *board*))
 		)
 		
 		(when (and (> i 60) (equal i 61))
@@ -79,11 +79,11 @@
 		)
 		
 		(when (and (> i 60) (< i 68))
-			(format t "~a " (nth i board))
+			(format t "~a " (nth i *board*))
 		)
 		
 		(when (and (> i 60) (equal i 68))
-			(format t "~a~%" (nth i board))
+			(format t "~a~%" (nth i *board*))
 		)
 		
 		(when (and (> i 70) (equal i 71))
@@ -91,11 +91,11 @@
 		)
 		
 		(when (and (> i 70) (< i 78))
-			(format t "~a " (nth i board))
+			(format t "~a " (nth i *board*))
 		)
 		
 		(when (and (> i 70) (equal i 78))
-			(format t "~a~%" (nth i board))
+			(format t "~a~%" (nth i *board*))
 		)
 		
 		(when (and (> i 80) (equal i 81))
@@ -103,11 +103,11 @@
 		)
 		
 		(when (and (> i 80) (< i 88))
-			(format t "~a " (nth i board))
+			(format t "~a " (nth i *board*))
 		)
 		
 		(when (and (> i 80) (equal i 88))
-			(format t "~a~%" (nth i board))
+			(format t "~a~%" (nth i *board*))
 		)
 	)
 )

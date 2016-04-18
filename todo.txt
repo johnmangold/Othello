@@ -1,17 +1,17 @@
 make-move function
 	this is for the computer to use.  It will take board [B or W] and depth.  it will return
 	the best move for the computer to make.  this can be fed into our move function.
-valid move function
+valid move function (finished)
 	checks move is valid.  has to check that the desired spot is next to an opposing piece
 	and that that move will capture at least one piece. returns t for valid nil for invalid.
-flip-piece
+flip-piece (finished)
 	possibly update b and w counts.  check every adjacent opposing piece direction until
 	a friendly piece is hit then "flip" every piece.
 minimax with alpha beta pruning
 	will generate successors and back up values to earlier nodes.  Will continue
 	until desired depth is hit and will begin backing up values.  need to add
 	alpha-beta pruning
-move function
+move function (done.  named player-turn and computer-turn)
 	given position in list for i.e. (3 4) will check validity of spot, place piece, and
 	flip pieces, and prints board after all updates.
 standard evaluation function
