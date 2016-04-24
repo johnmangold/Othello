@@ -13,7 +13,7 @@
 (load 'flip-pieces)
 (load 'player-turn)
 (load 'computer-turn)
-;(load 'minimax)
+(load 'minimax)
 
 ;---------------Global variables----------------------
 (defvar *board* (othello-init))
