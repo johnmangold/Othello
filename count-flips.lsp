@@ -1,86 +1,119 @@
-(defun count-flips (position color direction depth count)
-	(print count)
-	(cond
-		((string= direction "N")
+(defun count-flips (position color)
+	;there are eight possible directions
+	;dotimes loop that runs eight times with each loop checking a different direction
+	(let ((count 1)
+		  (depth 0)
+		  (pos position)
+		 )
+		 
+		(dotimes (i 8)
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
-				(t 
-					(count-flips (- position 10) color direction (1+ depth) (incf count))
+				;check north
+				((equal i 0)
+					(setf pos (- pos 10))
+					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
+						(incf count)
+						(incf depth)
+						(setf pos (- pos 10))
+					)
+					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
+					(setf depth 0)
+					(setf pos position)
+				)
+				
+				;check northeast
+				((equal i 1)
+					(setf pos (- pos 9))
+					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
+						(incf count)
+						(incf depth)
+						(setf pos (- pos 9))
+					)
+					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
+					(setf depth 0)
+					(setf pos position)
+				)
+				
+				;check east
+				((equal i 2)
+					(setf pos (1+ pos))
+					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
+						(incf count)
+						(incf depth)
+						(setf pos (1+ pos))
+					)
+					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
+					(setf depth 0)
+					(setf pos position)
+				)
+				
+				;chcek southeast
+				((equal i 3)
+					(setf pos (+ pos 11))
+					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
+						(incf count)
+						(incf depth)
+						(setf pos (+ pos 11))
+					)
+					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
+					(setf depth 0)
+					(setf pos position)
+				)
+				
+				;check south
+				((equal i 4)
+					(setf pos (+ pos 10))
+					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
+						(incf count)
+						(incf depth)
+						(setf pos (+ pos 10))
+					)
+					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
+					(setf depth 0)
+					(setf pos position)
+				)
+				
+				;check southwest
+				((equal i 5)
+					(setf pos (+ pos 9))
+					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
+						(incf count)
+						(incf depth)
+						(setf pos (+ pos 9))
+					)
+					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
+					(setf depth 0)
+					(setf pos position)
+				)
+				
+				;check west
+				((equal i 6)
+					(setf pos (1- pos))
+					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
+						(incf count)
+						(incf depth)
+						(setf pos (1- pos))
+					)
+					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
+					(setf depth 0)
+					(setf pos position)
+				)
+				
+				;check northwest
+				((equal i 7)
+					(setf pos (- pos 11))
+					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
+						(incf count)
+						(incf depth)
+						(setf pos (- pos 11))
+					)
+					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
+					(setf depth 0)
+					(setf pos position)
 				)
 			)
 		)
-		
-		((string= direction "NW")
-			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
-				(t 
-					(count-flips (- position 11) color direction (1+ depth) (incf count))
-				)
-			)
-		)
-		
-		((string= direction "W")
-			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
-				(t 
-					(count-flips (1- position) color direction (1+ depth) (incf count))
-				)
-			)
-		)
-		
-		((string= direction "SW")
-			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
-				(t 
-					(count-flips (+ position 9) color direction (1+ depth) (incf count))
-				)
-			)
-		)
-		
-		((string= direction "S")
-			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
-				(t 
-					(count-flips (+ position 10) color direction (1+ depth) (incf count))
-				)
-			)
-		)
-		
-		((string= direction "SE")
-			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
-				(t 
-					(count-flips (+ position 11) color direction (1+ depth) (incf count))
-				)
-			)
-		)
-		
-		((string= direction "E")
-			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
-				(t 
-					(count-flips (1+ position) color direction (1+ depth) (incf count))
-				)
-			)
-		)
-		
-		((string= direction "NE")
-			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
-				(t 
-					(count-flips (- position 9) color direction (1+ depth) (incf count))
-				)
-			)
-		)
+		;return count here
+		(return-from count-flips count)
 	)
-	(print count)
-	(return-from count-flips count)
 )
