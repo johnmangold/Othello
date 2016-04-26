@@ -1,171 +1,154 @@
+#|
+                  ***** valid-move.lsp *****
+
+Checks if a move is valid and flips the pieces.
+
+Author: John Mangold
+Class:	SDSM&T CSC447/547 Artificial Intelligence
+Date: 	Spring 2016
+
+Usage:    (valid-move position color)
+		   where position is the position that the player wishes to place their piece
+           where color is the color of the player who is about to place a piece
+
+Returns:  (successors)
+           where successors is a list of current-spot values of where
+		   the given player could place a piece
+|#
 (defun valid-move (position color)
-	;this works.  also, can-flip works.
-	;need to write flip pieces and call if can-flip returns true.
 	(let ((spot (+ (* (car position) 10) (cadr position))))
-		;check left
+		; check west
 		(cond
 			((string= color "white")
 				(when (string= (nth (1- spot) *board*) "B")
-					;direction west
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "W" 1) (flip-pieces spot color "W" 1))
-					;flip pieces 
 				)
 			)
 			
 			((string= color "black")
 				(when (string= (nth (1- spot) *board*) "W")
-					;direction west
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "W" 1) (flip-pieces spot color "W" 1))
-					;flip pieces
 				)
 			)
 		)
 		
-		;check diagonal up left
+		; check northwest
 		(cond
 			((string= color "white")
 				(when (string= (nth (- spot 11) *board*) "B")
-					;direction northwest
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "NW" 1) (flip-pieces spot color "NW" 1))
-					;flip pieces
 				)
 			)
 			
 			((string= color "black")
 				(when (string= (nth (- spot 11) *board*) "W")
-					;direction northwest
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "NW" 1) (flip-pieces spot color "NW" 1))
-					;flip pieces
 				)
 			)
 		)
 		
-		;check up
+		; check north
 		(cond
 			((string= color "white")
 				(when (string= (nth (- spot 10) *board*) "B")
-					;north
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "N" 1) (flip-pieces spot color "N" 1))
-					;flip pieces
 				)
 			)
 			
 			((string= color "black")
 				(when (string= (nth (- spot 10) *board*) "W")
-					;north
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "N" 1) (flip-pieces spot color "N" 1))
-					;flip pieces
 				)
 			)
 		)
 		
-		;check diagonal up right
+		; check north-east
 		(cond
 			((string= color "white")
 				(when (string= (nth (- spot 9) *board*) "B")
-					;northeast
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "NE" 1) (flip-pieces spot color "NE" 1))
-					;flip pieces
 				)
 			)
 			
 			((string= color "black")
 				(when (string= (nth (- spot 9) *board*) "W")
-					;northeast
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "NE" 1) (flip-pieces spot color "NE" 1))
-					;flip pieces
 				)
 			)
 		)
 		
-		;check right
+		; check east
 		(cond
 			((string= color "white")
 				(when (string= (nth (1+ spot) *board*) "B")
-					;east
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "E" 1) (flip-pieces spot color "E" 1))
-					;flip pieces
 				)
 			)
 			
 			((string= color "black")
 				(when (string= (nth (1+ spot) *board*) "W")
-					;east
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "E" 1) (flip-pieces spot color "E" 1))
-					;flip pieces
 				)
 			)
 		)
 		
-		;check diagonal down right
+		; check south-east
 		(cond
 			((string= color "white")
 				(when (string= (nth (+ spot 11) *board*) "B")
-					;southeast
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "SE" 1) (flip-pieces spot color "SE" 1))
-					;flip pieces
 				)
 			)
 			
 			((string= color "black")
 				(when (string= (nth (+ spot 11) *board*) "W")
-					;southeast
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "SE" 1) (flip-pieces spot color "SE" 1))
-					;flip pieces
 				)
 			)
 		)
 		
-		;check down
+		; check south
 		(cond
 			((string= color "white")
 				(when (string= (nth (+ spot 10) *board*) "B")
-					;south
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "S" 1) (flip-pieces spot color "S" 1))
-					;flip pieces
 				)
 			)
 			
 			((string= color "black")
 				(when (string= (nth (+ spot 10) *board*) "W")
-					;south
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "S" 1) (flip-pieces spot color "S" 1))
-					;flip pieces
 				)
 			)
 		)
 		
-		;check diagonal down left
+		; check south-west
 		(cond
 			((string= color "white")
 				(when (string= (nth (+ spot 9) *board*) "B")
-					;southwest
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "SW" 1) (flip-pieces spot color "SW" 1))
-					;flip pieces
 				)
 			)
 			
 			((string= color "black")
 				(when (string= (nth (+ spot 9) *board*) "W")
-					;southwest
-					;check for flipability
+					; if flips can be made flip pieces
 					(if (can-flip spot color "SW" 1) (flip-pieces spot color "SW" 1))
-					;flip pieces
 				)
 			)
 		)

@@ -11,6 +11,12 @@ Usage:    (player-turn color)
           where color is the color of the player
 
 Returns:  none
+
+Functions Called:	(print-board)
+					 prints the current position of the board
+					 
+					(valid-move pos color)
+					 checks to make sure that the move given is valid
 |#
 (defun player-turn (color)
 	(let ((move nil)		; set move to nil

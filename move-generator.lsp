@@ -7,12 +7,14 @@ Author: Cassidy Vollmer and John Mangold
 Class:	SDSM&T CSC447/547 Artificial Intelligence
 Date: 	Spring 2016
 
-Usage:    (move-generator player)
-          where player is the player about to place a piece
+Usage:    (move-generator board position player)
+		   where board is the current board
+		   where position is the position that the player wishes to place their piece
+           where player is the player about to place a piece
 
 Returns:  (successors)
-          where successors is a list of current-spot values of where
-		  the given player could place a piece
+           where successors is a list of current-spot values of where
+		   the given player could place a piece
 |#
 (defun move-generator (board position player)
 	(let ( (successors nil)	; set the successors to nil
