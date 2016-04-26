@@ -1,15 +1,30 @@
-(defun minimax (position depth player)
+(defun minimax (board position depth player check)
 
     ; if we have searched deep enough, or there are no successors,
     ; return position evaluation and nil for the path
-    (if (or (deepenough depth) (null (move-generator player)))
+	(cond
+		((and (equal (mod check 2) 0) (equal check 0))
+		
+		)
+	
+		((equal (mod check 2) 0)
+			(if (string= player "W") (setf player "B") (setf player "W"))
+		)
+		
+		((equal (mod check 2) 1)
+			(if (string= player "W") (setf player "B") (setf player "W"))
+		)
+	)
+	(setf board (temp-flip-pieces board position player))
+	(gen-print board)
+    (if (or (deepenough depth) (null (move-generator board player)))
         (list (static position player) nil)
 
         ; otherwise, generate successors and run minimax recursively
         (let
             (
                 ; generate list of sucessor positions
-                (successors (move-generator player))
+                (successors (move-generator board player))
 
                 ; initialize current best path to nil
                 (best-path nil)
@@ -20,13 +35,14 @@
                 ; other local variables
                 succ-value
                 succ-score
+				(board (copy-list board))
             )
 
             ; explore possible moves by looping through successor positions
             (dolist (successor successors)
 
                 ; perform recursive DFS exploration of game tree
-                (setq succ-value (minimax successor (1- depth) player))
+                (setq succ-value (minimax board successor (1- depth) player (1+ check)))
 
                 ; change sign every ply to reflect alternating selection
                 ; of MAX/MIN player (maximum/minimum value)

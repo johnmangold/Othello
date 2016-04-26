@@ -14,14 +14,12 @@ Returns:  (successors)
           where successors is a list of current-spot values of where
 		  the given player could place a piece
 |#
-(defun move-generator (board position player)
+(defun move-generator (board player)
 	(let ( (successors nil)	; set the successors to nil
 			(current-spot 11)	;set the current-spot to the first available spot int game board
-			(tempboard board)
 		 )
-		(setf tempboard (temp-flip-pieces tempboard position player))
 		; loop through all the spots on the board
-		(dolist (i tempboard)
+		(dolist (i board)
 			; if the current spot is a - and you can flip pieces to the east
 			(cond ((and (string= i "-") (can-flip current-spot player "E" 1))
 				; if this is a valid move add current-spot to list of successors
