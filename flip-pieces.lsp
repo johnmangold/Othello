@@ -90,13 +90,13 @@ Returns:  none
 				)
 			)
 		)
-		; check south-west
+		; check south-east
 		((string= direction "SE")
 			(cond
 				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
 				((string= (nth position *board*) color) t)
 				(t 
-					; flip piece and continue south-west
+					; flip piece and continue south-east
 					(setf (nth position *board*) color)
 					(flip-pieces (+ position 11) color direction (1+ depth))
 				)
