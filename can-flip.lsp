@@ -43,7 +43,7 @@ Returns:  (t)
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
 				((string= (nth position board) color) t)
-				(t (can-flip (- position 10) color direction (1+ depth)))
+				(t (can-flip board (- position 10) color direction (1+ depth)))
 			)
 		)
 		; Check North-West
@@ -56,7 +56,7 @@ Returns:  (t)
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
 				((string= (nth position board) color) t)
-				(t (can-flip (- position 11) color direction (1+ depth)))
+				(t (can-flip board (- position 11) color direction (1+ depth)))
 			)
 		)
 		; Check West
@@ -69,7 +69,7 @@ Returns:  (t)
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
 				((string= (nth position board) color) t)
-				(t (can-flip (1- position) color direction (1+ depth)))
+				(t (can-flip board (1- position) color direction (1+ depth)))
 			)
 		)
 		; Check South-West
@@ -82,7 +82,7 @@ Returns:  (t)
 					 (and (string= (nth position board) color) (equal depth 2))) nil)
 					 
 				 ((string= (nth position board) color) t)
-				 (t (can-flip (+ position 9) color direction (1+ depth)))
+				 (t (can-flip board (+ position 9) color direction (1+ depth)))
 			)
 		)
 		; Check South
@@ -95,7 +95,7 @@ Returns:  (t)
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
 				((string= (nth position board) color) t)
-				(t (can-flip (+ position 10) color direction (1+ depth)))
+				(t (can-flip board (+ position 10) color direction (1+ depth)))
 			)
 		)
 		; Check South-East
@@ -108,7 +108,7 @@ Returns:  (t)
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
 				((string= (nth position board) color) t)
-				(t (can-flip (+ position 11) color direction (1+ depth)))
+				(t (can-flip board (+ position 11) color direction (1+ depth)))
 			)
 		)
 		; Check East
@@ -121,7 +121,7 @@ Returns:  (t)
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
 				((string= (nth position board) color) t)
-				(t (can-flip (1+ position) color direction (1+ depth)))
+				(t (can-flip board (1+ position) color direction (1+ depth)))
 			)
 		)
 		; Check North-East
@@ -134,7 +134,7 @@ Returns:  (t)
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
 				((string= (nth position board) color) t)
-				(t (can-flip (- position 9) color direction (1+ depth)))
+				(t (can-flip board (- position 9) color direction (1+ depth)))
 			)
 		)
 	)
