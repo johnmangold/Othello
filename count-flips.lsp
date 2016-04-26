@@ -1,11 +1,28 @@
+#|
+                  ***** count-flips.lsp *****
+
+Counts the number of pieces flipped.
+
+Author: Cassidy Vollmer and John Mangold
+Class:	SDSM&T CSC447/547 Artificial Intelligence
+Date: 	Spring 2016
+
+Usage:    (count-flips position color)
+          where position is the position where the piece will be placed
+		  where color is the color of the player
+
+Returns:  (count)
+          where count is the number of flips that would happen is the player 
+		  places their peice in the given position
+|#
 (defun count-flips (position color)
 	;there are eight possible directions
 	;dotimes loop that runs eight times with each loop checking a different direction
-	(let ((count 1)
-		  (depth 0)
-		  (pos position)
+	(let ((count 1)			; intialize count to 1
+		  (depth 0)			; intialize depth to 0
+		  (pos position)	; intialize pos to position
 		 )
-		 
+		; check each direction to see if there are any pieces that can be flipped
 		(dotimes (i 8)
 			(cond
 				;check north
