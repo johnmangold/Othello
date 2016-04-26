@@ -13,7 +13,7 @@ Returns:  none
 |#
 (defun print-board ()
 	; loop through 8 times to print the top row of numbers
-	(format t "~%")
+	(format t "~%~%")
 	(dotimes (i 8)
 		; print s space first so everything is formatted
 		(when (equal i 0)

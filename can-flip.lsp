@@ -18,7 +18,7 @@ Returns:  (t)
 		  (nil)
 		   returns nil if the position can not flip pieces
 |#
-(defun can-flip (position color direction depth)
+(defun can-flip (board position color direction depth)
 	; change the color from word form to letter form
 	(cond
 		; if color is white set color to W
@@ -36,64 +36,68 @@ Returns:  (t)
 		; Check North
 		((string= direction "N")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1)) (and (string= (nth position board) color) (equal depth 2))) nil)
+				((string= (nth position board) color) t)
 				(t (can-flip (- position 10) color direction (1+ depth)))
 			)
 		)
 		; Check North-West
 		((string= direction "NW")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1)) (and (string= (nth position board) color) (equal depth 2))) nil)
+				((string= (nth position board) color) t)
 				(t (can-flip (- position 11) color direction (1+ depth)))
 			)
 		)
 		; Check West
 		((string= direction "W")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1)) (and (string= (nth position board) color) (equal depth 2))) nil)
+				((string= (nth position board) color) t)
 				(t (can-flip (1- position) color direction (1+ depth)))
 			)
 		)
 		; Check South-West
 		((string= direction "SW")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) 
+					 (string= (nth position board) "-1") 
+					 (and (not (string= (nth position board) "-")) (equal depth 1))
+					 (and (string= (nth position board) color) (equal depth 1)) 
+					 (and (string= (nth position board) color) (equal depth 2))) nil)
+				((string= (nth position board) color) t)
 				(t (can-flip (+ position 9) color direction (1+ depth)))
 			)
 		)
 		; Check South
 		((string= direction "S")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1)) (and (string= (nth position board) color) (equal depth 2))) nil)
+				((string= (nth position board) color) t)
 				(t (can-flip (+ position 10) color direction (1+ depth)))
 			)
 		)
 		; Check South-East
 		((string= direction "SE")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1)) (and (string= (nth position board) color) (equal depth 2))) nil)
+				((string= (nth position board) color) t)
 				(t (can-flip (+ position 11) color direction (1+ depth)))
 			)
 		)
 		; Check East
 		((string= direction "E")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1)) (and (string= (nth position board) color) (equal depth 2))) nil)
+				((string= (nth position board) color) t)
 				(t (can-flip (1+ position) color direction (1+ depth)))
 			)
 		)
 		; Check North-East
 		((string= direction "NE")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1)) (and (string= (nth position *board*) color) (equal depth 2))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1)) (and (string= (nth position board) color) (equal depth 2))) nil)
+				((string= (nth position board) color) t)
 				(t (can-flip (- position 9) color direction (1+ depth)))
 			)
 		)

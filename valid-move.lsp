@@ -34,7 +34,7 @@ Returns:  (successors)
 			((string= color "W")
 				(when (string= (nth (1- spot) *board*) "B")
 					; if flips can be made flip pieces
-					(if (can-flip spot color "W" 1) (flip-pieces spot color "W" 1))
+					(if (can-flip (copy-list *board*) spot color "W" 1) (flip-pieces spot color "W" 1))
 				)
 			)
 			
