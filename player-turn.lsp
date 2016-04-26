@@ -60,7 +60,7 @@ Functions Called:	(print-board)
 		(setf board-copy (copy-list *board*))
 		
 		;validate the move and flip pieces as needed
-		(valid-move pos color)
+		(valid-move (+ (* (car pos) 10) (cadr pos)) color)
 		
 		;if no moves happened say invalid move and ask for new position
 		;do this until a valid move happens or user forfeits turn

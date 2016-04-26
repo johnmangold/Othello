@@ -22,14 +22,7 @@ Functions Called:	(player-turn playercolor)
 |#
 
 ;----------load needed files here---------------------
-(load 'othello-init)
-(load 'print-board)
-(load 'valid-move)
-(load 'can-flip)
-(load 'flip-pieces)
-(load 'player-turn)
-(load 'computer-turn)
-(load 'minimax)
+(load 'quickload)
 
 ;---------------Global variables----------------------
 (defvar *board* (othello-init))
@@ -53,6 +46,7 @@ Functions Called:	(player-turn playercolor)
 		(return)
 	)
 	
+	(setf *board* (othello-init))
 	(let ((first nil)		; initalize first to nil
 		  (turncount 0)		; initalize turncount to 0
 		  (playercolor nil)	; initalize playercolor to nil
@@ -74,7 +68,7 @@ Functions Called:	(player-turn playercolor)
 		(loop do
 			(format t "Would you like to go first? [y/n]: ")
 			(setf first (string-downcase (read-line)))
-		while (or (string= first "y") (string= first "n") (string= first "yes") (string= first "no")))
+		while (and (not (string= first "y")) (not (string= first "n")) (not (string= first "yes")) (not (string= first "no"))))
 		; print game information for corresponding player color
 		(cond
 			((string= playercolor "white")
@@ -101,7 +95,7 @@ Functions Called:	(player-turn playercolor)
 		(cond
 			((or (string= first "y") (string= first "yes"))
 				;loop that starts with player-turn
-				#|
+				
 				(loop do
 					(cond
 						((equal (mod turncount 2) 0)
@@ -114,13 +108,13 @@ Functions Called:	(player-turn playercolor)
 							(incf turncount)
 						)
 					)
-				while (not (done)))
-				|#
+				)
+				
 			)
 			
 			(t 
 				;loop that starts with computer-turn
-				#|
+				
 				(loop do
 					(cond
 						((equal (mod turncount 2) 0)
@@ -133,24 +127,9 @@ Functions Called:	(player-turn playercolor)
 							(incf turncount)
 						)
 					)
-				while (not (done)))
-				|#
+				)
+				
 			)
 		)
 	)
-)
-
-(when (equal (length *ARGS*) 0)
-	(format t "Usage: clisp othello.lsp [Black or White]~%")
-	(return)
-)
-
-(let ((player (string-downcase (first *ARGS*))))
-	(when (not (or (string= player "white") (string= player "black")))
-		(format t "Usage: clisp othello.lsp [Black or White]~%")
-		(format t "You must specify whether you wish to be either White or Black.~%")
-		(return)
-	)
-
-	(othello player)
 )

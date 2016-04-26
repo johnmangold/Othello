@@ -16,7 +16,6 @@
 		)
 	)
 	(setf board (temp-flip-pieces board position player))
-	(gen-print board)
     (if (or (deepenough depth) (null (move-generator board player)))
         (list (static position player) nil)
 

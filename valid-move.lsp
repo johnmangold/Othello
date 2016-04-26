@@ -16,17 +16,29 @@ Returns:  (successors)
 		   the given player could place a piece
 |#
 (defun valid-move (position color)
-	(let ((spot (+ (* (car position) 10) (cadr position))))
+	; change the color from word form to letter form
+	(cond
+		; if the color is white set color to W
+		((string= color "white")
+			(setf color "W")
+		)
+		; if color is black set color to B
+		((string= color "black")
+			(setf color "B")
+		)
+	)
+	
+	(let ((spot position))
 		; check west
 		(cond
-			((string= color "white")
+			((string= color "W")
 				(when (string= (nth (1- spot) *board*) "B")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "W" 1) (flip-pieces spot color "W" 1))
 				)
 			)
 			
-			((string= color "black")
+			((string= color "B")
 				(when (string= (nth (1- spot) *board*) "W")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "W" 1) (flip-pieces spot color "W" 1))
@@ -36,14 +48,14 @@ Returns:  (successors)
 		
 		; check northwest
 		(cond
-			((string= color "white")
+			((string= color "W")
 				(when (string= (nth (- spot 11) *board*) "B")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "NW" 1) (flip-pieces spot color "NW" 1))
 				)
 			)
 			
-			((string= color "black")
+			((string= color "B")
 				(when (string= (nth (- spot 11) *board*) "W")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "NW" 1) (flip-pieces spot color "NW" 1))
@@ -53,14 +65,14 @@ Returns:  (successors)
 		
 		; check north
 		(cond
-			((string= color "white")
+			((string= color "W")
 				(when (string= (nth (- spot 10) *board*) "B")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "N" 1) (flip-pieces spot color "N" 1))
 				)
 			)
 			
-			((string= color "black")
+			((string= color "B")
 				(when (string= (nth (- spot 10) *board*) "W")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "N" 1) (flip-pieces spot color "N" 1))
@@ -70,14 +82,14 @@ Returns:  (successors)
 		
 		; check north-east
 		(cond
-			((string= color "white")
+			((string= color "W")
 				(when (string= (nth (- spot 9) *board*) "B")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "NE" 1) (flip-pieces spot color "NE" 1))
 				)
 			)
 			
-			((string= color "black")
+			((string= color "B")
 				(when (string= (nth (- spot 9) *board*) "W")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "NE" 1) (flip-pieces spot color "NE" 1))
@@ -87,14 +99,14 @@ Returns:  (successors)
 		
 		; check east
 		(cond
-			((string= color "white")
+			((string= color "W")
 				(when (string= (nth (1+ spot) *board*) "B")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "E" 1) (flip-pieces spot color "E" 1))
 				)
 			)
 			
-			((string= color "black")
+			((string= color "B")
 				(when (string= (nth (1+ spot) *board*) "W")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "E" 1) (flip-pieces spot color "E" 1))
@@ -104,14 +116,14 @@ Returns:  (successors)
 		
 		; check south-east
 		(cond
-			((string= color "white")
+			((string= color "W")
 				(when (string= (nth (+ spot 11) *board*) "B")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "SE" 1) (flip-pieces spot color "SE" 1))
 				)
 			)
 			
-			((string= color "black")
+			((string= color "B")
 				(when (string= (nth (+ spot 11) *board*) "W")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "SE" 1) (flip-pieces spot color "SE" 1))
@@ -121,14 +133,14 @@ Returns:  (successors)
 		
 		; check south
 		(cond
-			((string= color "white")
+			((string= color "W")
 				(when (string= (nth (+ spot 10) *board*) "B")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "S" 1) (flip-pieces spot color "S" 1))
 				)
 			)
 			
-			((string= color "black")
+			((string= color "B")
 				(when (string= (nth (+ spot 10) *board*) "W")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "S" 1) (flip-pieces spot color "S" 1))
@@ -138,14 +150,14 @@ Returns:  (successors)
 		
 		; check south-west
 		(cond
-			((string= color "white")
+			((string= color "W")
 				(when (string= (nth (+ spot 9) *board*) "B")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "SW" 1) (flip-pieces spot color "SW" 1))
 				)
 			)
 			
-			((string= color "black")
+			((string= color "B")
 				(when (string= (nth (+ spot 9) *board*) "W")
 					; if flips can be made flip pieces
 					(if (can-flip spot color "SW" 1) (flip-pieces spot color "SW" 1))
