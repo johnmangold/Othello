@@ -1,8 +1,24 @@
 #|
+                  ***** othello.lsp *****
 
+Generalized recursive minimax routine.
 
+Author: Cassidy Vollmer and John Mangold
+Class:	SDSM&T CSC447/547 Artificial Intelligence
+Date: 	Spring 2016
 
+Usage:    (othello player)
+           where player is the color of the player who is about to place a piece
 
+Returns:  (successors)
+           where successors is a list of current-spot values of where
+		   the given player could place a piece
+
+Functions Called:	(player-turn playercolor)
+					 deals with the players color
+					 
+					(valid-move pos color)
+					 checks to make sure that the move given is valid
 |#
 
 ;----------load needed files here---------------------
@@ -21,26 +37,28 @@
 ;------------------functions--------------------------
 
 (defun othello (player)
+	; if player is null print usage
 	(when (null player)
 		(format t "Usage from interpreter: (othello [Black or White])~%")
 		(format t "Please call the program appropriately.~%")
 		(return)
 	)
-	
+	; downcase the player input
 	(setf player (string-downcase player))
-	
+	; check to make sure player is white or black
 	(when (not (or (string= player "white") (string= player "black")))
+		; print usage statement
 		(format t "Usage: clisp othello.lsp [Black or White]~%")
 		(format t "You must specify whether you wish to be either White or Black.~%")
 		(return)
 	)
 	
-	(let ((first nil)
-		  (turncount 0)
-		  (playercolor nil)
-		  (compcolor nil)
+	(let ((first nil)		; initalize first to nil
+		  (turncount 0)		; initalize turncount to 0
+		  (playercolor nil)	; initalize playercolor to nil
+		  (compcolor nil)	; initalize compcolor to nil
 		 )
-		 
+		 ; set player color and computer color based on input
 		(cond 
 			((string= player "white")
 				(setf playercolor "white")
@@ -52,12 +70,12 @@
 				(setf compcolor "white")
 			)
 		)
-		
+		; ask if the user would like to go first
 		(loop do
 			(format t "Would you like to go first? [y/n]: ")
 			(setf first (string-downcase (read-line)))
 		while (or (string= first "y") (string= first "n") (string= first "yes") (string= first "no")))
-		
+		; print game information for corresponding player color
 		(cond
 			((string= playercolor "white")
 				(format t "~%You will be playing as white.  You will play against black.~%")
