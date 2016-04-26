@@ -33,7 +33,7 @@
 							(t (list alpha best-path))
 						)
 					)
-					(list alpha best-path)
+					(return-from minimax (list alpha best-path))
 				)
 				(t
 				
