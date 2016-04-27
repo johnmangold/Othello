@@ -15,15 +15,16 @@
 			(if (string= player "W") (setf player "B") (setf player "W"))
 		)
 	)
+	(setf newboard (temp-flip-pieces (copy-list board) position player))
 	
     (if (or (deepenough depth) (null (move-generator board player)))
         (list (static board position player) nil)
-
+		
         ; otherwise, generate successors and run minimax recursively
         (let
             (
                 ; generate list of sucessor positions
-				(newboard (temp-flip-pieces board position player))
+				
                 (successors (move-generator newboard player))
 
                 ; initialize current best path to nil
@@ -41,7 +42,7 @@
             (dolist (successor successors)
 
                 ; perform recursive DFS exploration of game tree
-                (setq succ-value (minimax newboard successor (1- depth) player (1+ check)))
+                (setq succ-value (minimax (copy-list newboard) successor (1- depth) player (1+ check)))
 
                 ; change sign every ply to reflect alternating selection
                 ; of MAX/MIN player (maximum/minimum value)
@@ -58,5 +59,5 @@
             ; return (value path) list when done
             (list best-score best-path)
         )
-    )
+	)
 )
