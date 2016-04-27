@@ -35,7 +35,7 @@
                 succ-value
                 succ-score
             )
-			(print successors)
+			
             ; explore possible moves by looping through successor positions
             (dolist (successor successors)
 
