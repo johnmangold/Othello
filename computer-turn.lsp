@@ -8,9 +8,10 @@
 		 )
 	
 		(print-board)
-		(setf moves (move-generator (copy-list *board*) color))
+		#|(setf moves (move-generator (copy-list *board*) color))
 		(dolist (pos moves)
 			(setf temp (minimax (copy-list *board*) pos 4 color 0))
+			(format t "~a~%" temp)
 			(cond
 				((> (car temp) best-score)
 					(setf best-score (car temp))
@@ -19,9 +20,11 @@
 			)
 		)
 		
-		(format t "~a" moves)
+		(format t "~a~%" moves)
 		(format t "~a ~a~%" best-score best-choice)
-		(format t "~%The computer's turn was: ~a ~a" (truncate best-choice 10) (mod best-choice 10))
-		(valid-move best-choice color)
+		(format t "~%The computer's turn was: ~a ~a" (truncate best-choice 10) (mod best-choice 10))|#
+		(setf temp (minimax (copy-list *board*) 0 4 color 0))
+		(format t "~a~%" temp)
+		(valid-move (car (cadr temp)) color)
 	)
 )
