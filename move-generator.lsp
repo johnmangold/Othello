@@ -41,7 +41,7 @@ Returns:  (successors)
 				)
 			)
 			; if the current spot is a - and you can flip pieces to the south
-			(cond ((and (string= i "-") (can-flip (copy-list *board*) current-spot player "S" 1))
+			(cond ((and (string= i "-") (can-flip *board* current-spot player "S" 1))
 				; if this is a valid move add current-spot to list of successors
 				(setf successors (cons current-spot successors))
 				)
@@ -53,7 +53,7 @@ Returns:  (successors)
 				)
 			)
 			; if the current spot is a - and you can flip pieces to the south-west
-			(cond ((and (string= i "-") (can-flip *board* current-spot player "SW" 1))
+			(cond ((and (string= i "-") (can-flip (copy-list *board*) current-spot player "SW" 1))
 				; if this is a valid move add current-spot to list of successors
 				(setf successors (cons current-spot successors))
 				)
