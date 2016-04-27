@@ -15,7 +15,8 @@
 			(if (string= player "W") (setf player "B") (setf player "W"))
 		)
 	)
-	
+	(print "level")
+	(print (move-generator board player))
     (if (or (deepenough depth) (null (move-generator board player)))
         (list (static board position player) nil)
 		
@@ -36,7 +37,7 @@
                 succ-value
                 succ-score
             )
-
+			(print successors)
             ; explore possible moves by looping through successor positions
             (dolist (successor successors)
 
