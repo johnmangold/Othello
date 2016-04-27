@@ -15,8 +15,7 @@
 			(if (string= player "W") (setf player "B") (setf player "W"))
 		)
 	)
-	(print "level")
-	(print (move-generator board player))
+	
     (if (or (deepenough depth) (null (move-generator board player)))
         (list (static board position player) nil)
 		
@@ -24,8 +23,7 @@
         (let
             (
                 ; generate list of sucessor positions
-				(newboard (temp-flip-pieces (copy-list board) position player))
-                (successors (move-generator newboard player))
+                (successors (move-generator (temp-flip-pieces (copy-list board) position player) player))
 
                 ; initialize current best path to nil
                 (best-path nil)
@@ -42,7 +40,7 @@
             (dolist (successor successors)
 
                 ; perform recursive DFS exploration of game tree
-                (setq succ-value (minimax newboard successor (1- depth) player (1+ check)))
+                (setq succ-value (minimax (temp-flip-pieces (copy-list board) position player) successor (1- depth) player (1+ check)))
 
                 ; change sign every ply to reflect alternating selection
                 ; of MAX/MIN player (maximum/minimum value)
