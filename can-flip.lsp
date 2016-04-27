@@ -7,7 +7,8 @@ Author: John Mangold
 Class:	SDSM&T CSC447/547 Artificial Intelligence
 Date: 	Spring 2016
 
-Usage:    (can-flip position color direction depth)
+Usage:    (can-flip board position color direction depth)
+			where board is the current position of the board
 		   where position is the position that the player wishes to place their piece
            where color is the color of the player how is about to place a piece
 		   where the direction is the direction on the board to be checked
@@ -38,7 +39,7 @@ Returns:  (t)
 			(cond
 				((or (and (string= (nth position board) "-") (> depth 1))
 					(string= (nth position board) "-1")
-					(and (not (string= (nth position board) "-")) (equal depth 1))
+					(and (not (string= (nth position board) "-")) (equal depth 1)) (and (string= (nth position board) "W") (equal depth 1))
 					(and (string= (nth position board) color) (equal depth 1))
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
@@ -51,9 +52,10 @@ Returns:  (t)
 			(cond
 				((or (and (string= (nth position board) "-") (> depth 1))
 					(string= (nth position board) "-1")
-					(and (not (string= (nth position board) "-")) (equal depth 1))
+					(or (and (string= (nth position board) "B") (equal depth 1)) (and (string= (nth position board) "W") (equal depth 1)))
 					(and (string= (nth position board) color) (equal depth 1)) 
-					(and (string= (nth position board) color) (equal depth 2))) nil)
+					(and (string= (nth position board) color) (equal depth 2))
+				) nil)
 				
 				((string= (nth position board) color) t)
 				(t (can-flip board (- position 11) color direction (1+ depth)))
@@ -64,7 +66,7 @@ Returns:  (t)
 			(cond
 				((or (and (string= (nth position board) "-") (> depth 1))
 					(string= (nth position board) "-1")
-					(and (not (string= (nth position board) "-")) (equal depth 1))
+					(or (and (string= (nth position board) "B") (equal depth 1)) (and (string= (nth position board) "W") (equal depth 1)))
 					(and (string= (nth position board) color) (equal depth 1))
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
@@ -77,7 +79,7 @@ Returns:  (t)
 			(cond
 				((or (and (string= (nth position board) "-") (> depth 1)) 
 					 (string= (nth position board) "-1") 
-					 (and (not (string= (nth position board) "-")) (equal depth 1))
+					 (or (and (string= (nth position board) "B") (equal depth 1)) (and (string= (nth position board) "W") (equal depth 1)))
 					 (and (string= (nth position board) color) (equal depth 1)) 
 					 (and (string= (nth position board) color) (equal depth 2))) nil)
 					 
@@ -90,7 +92,7 @@ Returns:  (t)
 			(cond
 				((or (and (string= (nth position board) "-") (> depth 1))
 					(string= (nth position board) "-1")
-					(and (not (string= (nth position board) "-")) (equal depth 1))
+					(or (and (string= (nth position board) "B") (equal depth 1)) (and (string= (nth position board) "W") (equal depth 1)))
 					(and (string= (nth position board) color) (equal depth 1))
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
@@ -103,7 +105,7 @@ Returns:  (t)
 			(cond
 				((or (and (string= (nth position board) "-") (> depth 1))
 					(string= (nth position board) "-1")
-					(and (not (string= (nth position board) "-")) (equal depth 1))
+					(or (and (string= (nth position board) "B") (equal depth 1)) (and (string= (nth position board) "W") (equal depth 1)))
 					(and (string= (nth position board) color) (equal depth 1)) 
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
@@ -116,7 +118,7 @@ Returns:  (t)
 			(cond
 				((or (and (string= (nth position board) "-") (> depth 1))
 					(string= (nth position board) "-1") 
-					(and (not (string= (nth position board) "-")) (equal depth 1))
+					(or (and (string= (nth position board) "B") (equal depth 1)) (and (string= (nth position board) "W") (equal depth 1)))
 					(and (string= (nth position board) color) (equal depth 1)) 
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				
@@ -129,7 +131,7 @@ Returns:  (t)
 			(cond
 				((or (and (string= (nth position board) "-") 
 					(> depth 1)) (string= (nth position board) "-1")
-					(and (not (string= (nth position board) "-")) (equal depth 1))
+					(or (and (string= (nth position board) "B") (equal depth 1)) (and (string= (nth position board) "W") (equal depth 1)))
 					(and (string= (nth position board) color) (equal depth 1))
 					(and (string= (nth position board) color) (equal depth 2))) nil)
 				

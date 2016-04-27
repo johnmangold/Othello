@@ -23,49 +23,49 @@ Returns:  (successors)
 		; loop through all the spots on the board
 		(dolist (i board)
 			; if the current spot is a - and you can flip pieces to the east
-			(cond ((and (string= i "-") (can-flip current-spot player "E" 1))
+			(cond ((and (string= i "-") (can-flip (copy-list *board*) current-spot player "E" 1))
 				; if this is a valid move add current-spot to list of successors
 				(setf successors (cons current-spot successors))
 				)
 			)
 			;; if the current spot is a - and you can flip pieces to the west
-			(cond ((and (string= i "-") (can-flip current-spot player "W" 1))
+			(cond ((and (string= i "-") (can-flip (copy-list *board*) current-spot player "W" 1))
 				; if this is a valid move add current-spot to list of successors
 				(setf successors (cons current-spot successors))
 				)
 			)
 			; if the current spot is a - and you can flip pieces to the north
-			(cond ((and (string= i "-") (can-flip current-spot player "N" 1))
+			(cond ((and (string= i "-") (can-flip (copy-list *board*) current-spot player "N" 1))
 				; if this is a valid move add current-spot to list of successors
 				(setf successors (cons current-spot successors))
 				)
 			)
 			; if the current spot is a - and you can flip pieces to the south
-			(cond ((and (string= i "-") (can-flip current-spot player "S" 1))
+			(cond ((and (string= i "-") (can-flip (copy-list *board*) current-spot player "S" 1))
 				; if this is a valid move add current-spot to list of successors
 				(setf successors (cons current-spot successors))
 				)
 			)
 			; if the current spot is a - and you can flip pieces to the south-east
-			(cond ((and (string= i "-") (can-flip current-spot player "SE" 1))
+			(cond ((and (string= i "-") (can-flip (copy-list *board*) current-spot player "SE" 1))
 				; if this is a valid move add current-spot to list of successors
 				(setf successors (cons current-spot successors))
 				)
 			)
 			; if the current spot is a - and you can flip pieces to the south-west
-			(cond ((and (string= i "-") (can-flip current-spot player "SW" 1))
+			(cond ((and (string= i "-") (can-flip *board* current-spot player "SW" 1))
 				; if this is a valid move add current-spot to list of successors
 				(setf successors (cons current-spot successors))
 				)
 			)
 			; if the current spot is a - and you can flip pieces to the north-west
-			(cond ((and (string= i "-") (can-flip current-spot player "NW" 1))
+			(cond ((and (string= i "-") (can-flip (copy-list *board*) current-spot player "NW" 1))
 				; if this is a valid move add current-spot to list of successors
 				(setf successors (cons current-spot successors))
 				)
 			)
 			; if the current spot is a - and you can flip pieces to the north-east
-			(cond ((and (string= i "-") (can-flip current-spot player "NE" 1))
+			(cond ((and (string= i "-") (can-flip (copy-list *board*) current-spot player "NE" 1))
 				; if this is a valid move add current-spot to list of successors
 				(setf successors (cons current-spot successors))
 				)
