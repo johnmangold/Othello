@@ -15,118 +15,111 @@ Returns:  (count)
           where count is the number of flips that would happen is the player 
 		  places their peice in the given position
 |#
-(defun count-flips (position color)
+(defun count-flips (board position color)
 	;there are eight possible directions
 	;dotimes loop that runs eight times with each loop checking a different direction
-	(let ((count 1)			; intialize count to 1
+	(let ((count 0)			; intialize count to 1
 		  (depth 0)			; intialize depth to 0
 		  (pos position)	; intialize pos to position
+		  (tempboard (copy-list board))
 		 )
 		; check each direction to see if there are any pieces that can be flipped
 		(dotimes (i 8)
 			(cond
-				;check north
+				;check north - 10
 				((equal i 0)
-					(setf pos (- pos 10))
-					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
-						(incf count)
-						(incf depth)
-						(setf pos (- pos 10))
+					(cond ((can-flip tempboard position color "N" 1) 
+							(loop do
+								(incf count)
+								(setf pos (- pos 10))
+							while (and (not (string= (nth pos board) "-")) (not (string= (nth pos board) "-1")) (not (string= (nth pos board) color))))
+							(setf pos position)
+						)
 					)
-					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
-					(setf depth 0)
-					(setf pos position)
 				)
 				
-				;check northeast
+				;check northeast - 9
 				((equal i 1)
-					(setf pos (- pos 9))
-					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
-						(incf count)
-						(incf depth)
-						(setf pos (- pos 9))
+					(cond ((can-flip tempboard position color "NE" 1) 
+							(loop do
+								(incf count)
+								(setf pos (- pos 9))
+							while (and (not (string= (nth pos board) "-")) (not (string= (nth pos board) "-1")) (not (string= (nth pos board) color))))
+							(setf pos position)
+						)
 					)
-					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
-					(setf depth 0)
-					(setf pos position)
 				)
 				
-				;check east
+				;check east + 1
 				((equal i 2)
-					(setf pos (1+ pos))
-					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
-						(incf count)
-						(incf depth)
-						(setf pos (1+ pos))
+					(cond ((can-flip tempboard position color "E" 1) 
+							(loop do
+								(incf count)
+								(setf pos (1+ pos))
+							while (and (not (string= (nth pos board) "-")) (not (string= (nth pos board) "-1")) (not (string= (nth pos board) color))))
+							(setf pos position)
+						)
 					)
-					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
-					(setf depth 0)
-					(setf pos position)
 				)
 				
-				;chcek southeast
+				;chcek southeast + 11
 				((equal i 3)
-					(setf pos (+ pos 11))
-					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
-						(incf count)
-						(incf depth)
-						(setf pos (+ pos 11))
+					(cond ((can-flip tempboard position color "SE" 1) 
+							(loop do
+								(incf count)
+								(setf pos (+ pos 11))
+							while (and (not (string= (nth pos board) "-")) (not (string= (nth pos board) "-1")) (not (string= (nth pos board) color))))
+							(setf pos position)
+						)
 					)
-					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
-					(setf depth 0)
-					(setf pos position)
 				)
 				
-				;check south
+				;check south + 10
 				((equal i 4)
-					(setf pos (+ pos 10))
-					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
-						(incf count)
-						(incf depth)
-						(setf pos (+ pos 10))
+					(cond ((can-flip tempboard position color "S" 1) 
+							(loop do
+								(incf count)
+								(setf pos (+ pos 10))
+							while (and (not (string= (nth pos board) "-")) (not (string= (nth pos board) "-1")) (not (string= (nth pos board) color))))
+							(setf pos position)
+						)
 					)
-					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
-					(setf depth 0)
-					(setf pos position)
 				)
 				
-				;check southwest
+				;check southwest + 9
 				((equal i 5)
-					(setf pos (+ pos 9))
-					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
-						(incf count)
-						(incf depth)
-						(setf pos (+ pos 9))
+					(cond ((can-flip tempboard position color "SW" 1) 
+							(loop do
+								(incf count)
+								(setf pos (+ pos 9))
+							while (and (not (string= (nth pos board) "-")) (not (string= (nth pos board) "-1")) (not (string= (nth pos board) color))))
+							(setf pos position)
+						)
 					)
-					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
-					(setf depth 0)
-					(setf pos position)
 				)
 				
-				;check west
+				;check west - 1
 				((equal i 6)
-					(setf pos (1- pos))
-					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
-						(incf count)
-						(incf depth)
-						(setf pos (1- pos))
+					(cond ((can-flip tempboard position color "W" 1) 
+							(loop do
+								(incf count)
+								(setf pos (1- pos))
+							while (and (not (string= (nth pos board) "-")) (not (string= (nth pos board) "-1")) (not (string= (nth pos board) color))))
+							(setf pos position)
+						)
 					)
-					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
-					(setf depth 0)
-					(setf pos position)
 				)
 				
-				;check northwest
+				;check northwest - 11
 				((equal i 7)
-					(setf pos (- pos 11))
-					(when (and (not (string= (nth pos *board*) "-")) (not (string= (nth pos *board*) color)) (not (string= (nth pos *board*) "-1")))
-						(incf count)
-						(incf depth)
-						(setf pos (- pos 11))
+					(cond ((can-flip tempboard position color "NW" 1) 
+							(loop do
+								(incf count)
+								(setf pos (- pos 11))
+							while (and (not (string= (nth pos board) "-")) (not (string= (nth pos board) "-1")) (not (string= (nth pos board) color))))
+							(setf pos position)
+						)
 					)
-					(if (string= (nth pos *board*) "-") (setf count (- count depth)))
-					(setf depth 0)
-					(setf pos position)
 				)
 			)
 		)

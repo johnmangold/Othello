@@ -55,13 +55,13 @@ Functions Called:	(player-turn playercolor)
 		 ; set player color and computer color based on input
 		(cond 
 			((string= player "white")
-				(setf playercolor "white")
-				(setf compcolor "black")
+				(setf playercolor "W")
+				(setf compcolor "B")
 			)
 			
 			((string= player "black")
-				(setf playercolor "black")
-				(setf compcolor "white")
+				(setf playercolor "B")
+				(setf compcolor "W")
 			)
 		)
 		; ask if the user would like to go first

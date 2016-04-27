@@ -19,7 +19,8 @@
 			)
 		)
 		
-		
+		(format t "~a" moves)
+		(format t "~a ~a~%" best-score best-choice)
 		(format t "~%The computer's turn was: ~a ~a" (truncate best-choice 10) (mod best-choice 10))
 		(valid-move best-choice color)
 	)
