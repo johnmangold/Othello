@@ -19,6 +19,7 @@ Functions Called:	(count-flips position color)
 |#
 (defun static (board position color)
 	(let ((count nil))
-		(setf count (count-flips board position color))
+		(setf count (count-flips (copy-list board) position color))
+		(return-from static count)
 	)
 )
