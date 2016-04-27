@@ -17,8 +17,8 @@ Returns:  (count)
 Functions Called:	(count-flips position color)
 					 counts the number of piece that would be flipped	
 |#
-(defun static (position color)
+(defun static (board position color)
 	(let ((count nil))
-		(setf count (count-flips (copy-list *board*) position color))
+		(setf count (count-flips board position color))
 	)
 )

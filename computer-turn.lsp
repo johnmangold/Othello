@@ -1,29 +1,11 @@
 (defun computer-turn (color)
 	(let (
-			(moves nil)
-			(best-score 0)
-			(best-choice 0)
 			(temp nil)
-			(move nil)
+			(tempboard (copy-list board))
 		 )
 	
 		(print-board)
-		#|(setf moves (move-generator (copy-list *board*) color))
-		(dolist (pos moves)
-			(setf temp (minimax (copy-list *board*) pos 4 color 0))
-			(format t "~a~%" temp)
-			(cond
-				((> (car temp) best-score)
-					(setf best-score (car temp))
-					(setf best-choice (car (cadr temp)))
-				)
-			)
-		)
-		
-		(format t "~a~%" moves)
-		(format t "~a ~a~%" best-score best-choice)
-		(format t "~%The computer's turn was: ~a ~a" (truncate best-choice 10) (mod best-choice 10))|#
-		(setf temp (minimax (copy-list *board*) 0 4 color 0))
+		(setf temp (minimax tempboard 0 2 color 0))
 		(format t "~a~%" temp)
 		(valid-move (car (cadr temp)) color)
 	)

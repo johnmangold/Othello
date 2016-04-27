@@ -17,7 +17,7 @@
 	)
 	
     (if (or (deepenough depth) (null (move-generator board player)))
-        (list (static position player) nil)
+        (list (static board position player) nil)
 
         ; otherwise, generate successors and run minimax recursively
         (let
