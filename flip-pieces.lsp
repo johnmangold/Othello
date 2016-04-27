@@ -15,7 +15,7 @@ Usage:    (flip-pieces position color direction depth)
 
 Returns:  none
 |#
-(defun flip-pieces (position color direction depth)
+(defun flip-pieces (board position color direction depth)
 	; change the color from word form to letter form
 	(cond
 		; if the color is white set color to W
@@ -33,96 +33,96 @@ Returns:  none
 		; check North
 		((string= direction "N")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((string= (nth position board) color) t)
 				(t 
 					; flip piece and continue north
 					(setf (nth position *board*) color)
-					(flip-pieces (- position 10) color direction (1+ depth))
+					(flip-pieces board (- position 10) color direction (1+ depth))
 				)
 			)
 		)
 		; check north-west
 		((string= direction "NW")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((string= (nth position board) color) t)
 				(t 
 					; flip piece and continue north-west
 					(setf (nth position *board*) color)
-					(flip-pieces (- position 11) color direction (1+ depth))
+					(flip-pieces board (- position 11) color direction (1+ depth))
 				)
 			)
 		)
 		; check west
 		((string= direction "W")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((string= (nth position board) color) t)
 				(t 
 					; flip piece and continue west
 					(setf (nth position *board*) color)
-					(flip-pieces (1- position) color direction (1+ depth))
+					(flip-pieces board (1- position) color direction (1+ depth))
 				)
 			)
 		)
 		; check south-west
 		((string= direction "SW")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((string= (nth position board) color) t)
 				(t 
 					; flip piece and continue south-west
 					(setf (nth position *board*) color)
-					(flip-pieces (+ position 9) color direction (1+ depth))
+					(flip-pieces board (+ position 9) color direction (1+ depth))
 				)
 			)
 		)
 		; check south
 		((string= direction "S")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((string= (nth position board) color) t)
 				(t 
 					; flip piece and continue south
 					(setf (nth position *board*) color)
-					(flip-pieces (+ position 10) color direction (1+ depth))
+					(flip-pieces board (+ position 10) color direction (1+ depth))
 				)
 			)
 		)
 		; check south-east
 		((string= direction "SE")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((string= (nth position board) color) t)
 				(t 
 					; flip piece and continue south-east
 					(setf (nth position *board*) color)
-					(flip-pieces (+ position 11) color direction (1+ depth))
+					(flip-pieces board (+ position 11) color direction (1+ depth))
 				)
 			)
 		)
 		; check east
 		((string= direction "E")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((string= (nth position board) color) t)
 				(t 
 					; flip piece and continue east
 					(setf (nth position *board*) color)
-					(flip-pieces (1+ position) color direction (1+ depth))
+					(flip-pieces board (1+ position) color direction (1+ depth))
 				)
 			)
 		)
 		; check north-east
 		((string= direction "NE")
 			(cond
-				((or (and (string= (nth position *board*) "-") (> depth 1)) (string= (nth position *board*) "-1") (and (string= (nth position *board*) color) (equal depth 1))) nil)
-				((string= (nth position *board*) color) t)
+				((or (and (string= (nth position board) "-") (> depth 1)) (string= (nth position board) "-1") (and (string= (nth position board) color) (equal depth 1))) nil)
+				((string= (nth position board) color) t)
 				(t 
 					; flip piece and continue north-east
 					(setf (nth position *board*) color)
-					(flip-pieces (- position 9) color direction (1+ depth))
+					(flip-pieces board (- position 9) color direction (1+ depth))
 				)
 			)
 		)

@@ -27,7 +27,7 @@ Functions Called:	(print-board)
 		 )
 		 ; print the board and ask for the players move
 		(print-board)
-		(format t "~%Please enter your move: ")
+		(format t "~%Please enter your move [row col]: ")
 		; read in the move and downcase it
 		(setf move (read-line))
 		(setf move (string-downcase move))
@@ -44,7 +44,7 @@ Functions Called:	(print-board)
 					(format t "That move is invalid.~%")
 					(format t "Row and column cannot be lower than one or higher than 8.~%")
 					; ask for a new move and read it in
-					(format t "~%Please enter your move: ")
+					(format t "~%Please enter your move [row col]: ")
 					(setf move (read-line))
 					(setf move (string-downcase move))
 					; check if player wants to forfeit their move
@@ -86,7 +86,8 @@ Functions Called:	(print-board)
 							(format t "That move is invalid.~%")
 							(format t "Row and column cannot be lower than one or higher than 8.~%")
 							; ask for a new move, read it in and downcase it
-							(format t "~%Please enter your move: ")
+							
+							(format t "~%Please enter your move [row col]: ")
 							(setf move (read-line))
 							(setf move (string-downcase move))
 							; check if the player wants to forfeit their move
@@ -98,7 +99,7 @@ Functions Called:	(print-board)
 					)
 					; set position and make sure move is valid
 					(setf pos (list row col))
-					(valid-move pos color)
+					(valid-move (+ (* (car pos) 10) (cadr pos)) color)
 				while (equal *board* board-copy))
 			)
 		)
